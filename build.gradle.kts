@@ -54,7 +54,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.intaleqapp"
                 artifactId = "maps-android"
-                version = "1.0.0"
+                version = "1.0.2"
 
                 pom {
                     name.set("Intaleq Maps Android SDK")

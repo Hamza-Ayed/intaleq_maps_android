@@ -218,6 +218,16 @@ class IntaleqMapView @JvmOverloads constructor(
         @JavascriptInterface
         fun onCameraMove(lat: Double, lng: Double, zoom: Double, pitch: Double, bearing: Double) {
             post {
+                try {
+                    com.intaleq.maps.service.IntaleqTelemetryService.instance.recordPosition(
+                        latitude = lat,
+                        longitude = lng,
+                        speedKmH = 0.0,
+                        heading = bearing
+                    )
+                } catch (t: Throwable) {
+                    // Fail silently
+                }
                 val pos = CameraPosition(
                     target = LatLng(lat, lng),
                     zoom = zoom.toFloat(),

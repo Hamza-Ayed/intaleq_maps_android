@@ -4,6 +4,8 @@
 package com.intaleq.maps
 
 import android.content.Context
+import com.intaleq.maps.service.IntaleqTelemetryService
+import java.util.UUID
 
 /**
  * Main entry point for Intaleq Commercial Maps SDK for Android (Kotlin).
@@ -27,5 +29,19 @@ object IntaleqMaps {
         this.apiKey = apiKey
         this.baseUrl = baseUrl.trimEnd('/')
         this.isInitialized = true
+
+        try {
+            val deviceId = try {
+                android.provider.Settings.Secure.getString(
+                    context.contentResolver,
+                    android.provider.Settings.Secure.ANDROID_ID
+                ) ?: UUID.randomUUID().toString()
+            } catch (t: Throwable) {
+                UUID.randomUUID().toString()
+            }
+            IntaleqTelemetryService.instance.startTracking(deviceId)
+        } catch (t: Throwable) {
+            // Fail silently
+        }
     }
 }

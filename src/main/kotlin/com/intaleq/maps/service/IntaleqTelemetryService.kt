@@ -203,8 +203,8 @@ class IntaleqTelemetryService private constructor() {
                 }
                 return@withContext true
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (e: Throwable) {
+            // Silently suppress for background fleet telemetry
         }
 
         return@withContext false
@@ -234,8 +234,8 @@ class IntaleqTelemetryService private constructor() {
             }
 
             return@withContext conn.responseCode in 200..299
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (e: Throwable) {
+            // Silently suppress
             return@withContext false
         }
     }

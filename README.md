@@ -30,7 +30,7 @@ In your app module `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.Hamza-Ayed:intaleq_maps_android:1.0.0")
+    implementation("com.github.Hamza-Ayed:intaleq_maps_android:v1.0.2")
 }
 ```
 
